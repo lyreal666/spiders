@@ -32,16 +32,13 @@ const main = async () => {
         const bookList = await crawl(currentPage);
         allBooks.push(...bookList);
     }
+    console.log(allBooks);
     const jsonPath = path.resolve(__dirname, './books.json');
     await fs.writeFile(jsonPath, JSON.stringify(allBooks, null, '    '));
 }
 
 if (require.main === module) {
-    //main();
-    var new_url = new GetUrl();
-    new_url.u_req(function(ret) {
-      res.send(ret);
-    });
+   main();
 } else {
     module.exports = {}
 }
