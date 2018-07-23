@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-23 21:48:00 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-23 23:23:26
+ * @Last Modified time: 2018-07-24 00:09:06
  */
 
 const log4js = require('./configLog');
@@ -28,12 +28,6 @@ const start = async (browser, page, account) => {
         }
     }
 
-    l2f.info('2小时后自动关闭窗口');
-    setTimeout(() => {
-        browser.close().then().catch(() => l2f.info('关闭浏览器出错, 账号'));
-    }, 1000 * 60 * 60 * 2);
-
-
     const evalFunc = (selector) => {
         const button = document.querySelector('h3.text--sign.js-timer');
         return button.innerText;
@@ -51,7 +45,12 @@ const start = async (browser, page, account) => {
     
     const leftTimeButtonSelector = 'h3.text--sign.js-timer';
     await page.waitForSelector(leftTimeButtonSelector);
-    setInterval(() => page.evaluate(evalFunc, leftTimeButtonSelector).then(resolvedFunc), 1000 * 30);
+    const timer = setInterval(() => page.evaluate(evalFunc, leftTimeButtonSelector).then(resolvedFunc), 1000 * 60 * 5);
+    l2f.info('2小时后自动关闭窗口');
+    setTimeout(() => {
+        clearInterval(timer);
+        browser.close().then().catch(() => l2f.info('关闭浏览器出错, 账号'));
+    }, 1000 * 60 * 60 * 2);
 }
 
 if (require.main === module) {
