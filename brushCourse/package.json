@@ -1,16 +1,19 @@
 {
   "name": "brushCourse",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. cd进入brushCourse文件夹\r 2. cnpm install\r 3. 参考src/account.json文件,添加没刷过的账号\r 4. cd src && node index.js",
   "main": "index.js",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "log4js": "^3.0.2",
+    "mz": "^2.7.0",
+    "puppeteer": "^1.6.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "faker": "^4.1.0",
-    "puppeteer": "^1.6.0"
-  }
+  "license": "ISC"
 }
