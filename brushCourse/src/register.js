@@ -2,13 +2,12 @@
  * @Author: ytj 
  * @Date: 2018-07-23 21:51:50 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-24 00:20:38
+ * @Last Modified time: 2018-07-25 12:02:31
  */
 
 "use strict";
 
 const puppeteer = require('puppeteer');
-const devices = require('puppeteer/DeviceDescriptors');
 const faker = require('faker');
 const log4js = require('./configLog');
 
@@ -21,8 +20,10 @@ const register = async (account) => {
 
     const registerPageUrl = 'https://nvidia.qwiklab.com/users/sign_up?locale=en'
     const page = await browser.newPage();
-    const iPhone = devices['iPhone 6'];
-    await page.emulate(iPhone)
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36');
+    // const devices = require('puppeteer/DeviceDescriptors');
+    // const iPhone = devices['iPhone 6'];
+    // await page.emulate(iPhone)
     await page.goto(registerPageUrl);
 
     const registerButtonSelector = 'body > div > div.join__button > div';
